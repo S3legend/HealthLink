@@ -1,0 +1,20 @@
+.hero {
+    background-color:#118aa4;
+    color: white;
+    padding: 50px 0;
+}
+
+.btn-primary {
+    background-color: #046b6c;
+    border: none;
+    border-radius: 50px; /* For curved buttons */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    color: #118aa4;
+    border: 1px solid #0056b3;
+
+}
