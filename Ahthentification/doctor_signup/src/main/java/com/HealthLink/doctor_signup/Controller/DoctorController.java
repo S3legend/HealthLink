@@ -4,6 +4,7 @@ import com.HealthLink.doctor_signup.DTO.DoctorRegistrationDTO;
 import com.HealthLink.doctor_signup.Entity.DoctorRegistration;
 import com.HealthLink.doctor_signup.Service.DoctorService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +23,10 @@ public class DoctorController {
     public ResponseEntity<DoctorRegistration> registerDoctor(@RequestBody DoctorRegistrationDTO doctorDTO) {
         DoctorRegistration registeredDoctor = doctorService.registerDoctor(doctorDTO);
         return ResponseEntity.ok(registeredDoctor);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 }

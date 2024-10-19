@@ -1,11 +1,11 @@
 package com.HealthLink.doctor_signup.Service;
 
-
 import com.HealthLink.doctor_signup.DTO.DoctorRegistrationDTO;
 import com.HealthLink.doctor_signup.Entity.DoctorRegistration;
 import com.HealthLink.doctor_signup.Repo.DoctorRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Service
 public class DoctorService {
@@ -18,6 +18,11 @@ public class DoctorService {
     }
 
     public DoctorRegistration registerDoctor(DoctorRegistrationDTO doctorDTO) {
+        // Vérifier si l'email est déjà utilisé
+        if (doctorRepository.findByEmail(doctorDTO.getEmail()) != null) {
+            throw new IllegalArgumentException("Email already in use");
+        }
+
         DoctorRegistration doctor = new DoctorRegistration();
         doctor.setFirstName(doctorDTO.getFirstName());
         doctor.setLastName(doctorDTO.getLastName());
@@ -33,5 +38,4 @@ public class DoctorService {
 
         return doctorRepository.save(doctor);
     }
-
 }
