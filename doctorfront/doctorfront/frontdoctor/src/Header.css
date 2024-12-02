@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    align-items:center;
+    justify-content: left;
+    background-color: #DEE1E6FF; /* Une couleur de fond claire */
+    padding: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding-left: 100px;
+    width: 1140px;
+}
+
+.logo {
+    display: flex;
+    align-items: left;
+    gap: 1rem;
+    background-color:#DEE1E6FF; /* Espacement entre le logo et le nom */
+}
+
+.logo-img {
+    width:80px;
+    height: 80px;
+    background-color:#DEE1E6FF ;
+}
+
+.app-name {
+    font-size: 24px;
+    color: #0A6F81FF; /* Couleur principale */
+    font-weight: bold;
+    margin-top: 30px;
+}
