@@ -1,0 +1,56 @@
+/* /src/pages/PatientDashboard.css */
+.patient-dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.patient-info-container,
+.medical-records-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.patient-info-container h2,
+.medical-records-container h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.patient-info p,
+.medical-records p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #34495e;
+}
+
+.patient-info p strong,
+.medical-records p strong {
+    color: #2980b9;
+}
+
+.medical-records ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.medical-records li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+}
+
+.medical-records li p {
+    margin: 5px 0;
+}
+
+.medical-records li p strong {
+    color: #2980b9;
+}
