@@ -3,18 +3,18 @@ import "../Styles/DocSignup.css";
 import logoImage from "../Assets/logovert.png";
 import minlog from "../Assets/minilogo.png";
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 const DocSignup = () => {
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
         password: "",
         confirmPassword: "",
         city: "",
         country: "",
         specialty: "",
-        officeAddress: "",
+        address: "",
         phoneNumber: "",
         officePhoneNumber: "",
     });
@@ -24,10 +24,34 @@ const DocSignup = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        try {
+            const response = await axios.post('http://localhost:2424/auth/register/doctor', formData);
+            console.log("Doctor registered successfully:", response.data);
+            alert("Doctor registered successfully!");
+        } catch (error) {
+            if (error.response) {
+                // Erreur renvoyée par le serveur
+                console.error("Error response data:", error.response.data);
+                console.error("Error response status:", error.response.status);
+                console.error("Error response headers:", error.response.headers);
+
+                alert(`Error registering doctor: ${error.response.data.message || "An unknown error occurred"}`);
+            } else if (error.request) {
+                // La requête a été envoyée mais aucune réponse n'a été reçue
+                console.error("Error request:", error.request);
+                alert("No response from the server. Please try again later.");
+            } else {
+                // Erreur lors de la configuration de la requête
+                console.error("Error message:", error.message);
+                alert(`An error occurred: ${error.message}`);
+            }
+        }
     };
+
+
 
     return (
         <div className="register-doc-container">
@@ -42,26 +66,16 @@ const DocSignup = () => {
                         {/* Colonne gauche */}
                         <div className="form-left">
                             <div className="form-group">
-                                <label>First Name</label>
+                                <label>Name</label>
                                 <input
                                     type="text"
-                                    name="firstName"
-                                    value={formData.firstName}
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleChange}
-                                    placeholder="Input first name"
+                                    placeholder="Input name"
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label>Last Name</label>
-                                <input
-                                    type="text"
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleChange}
-                                    placeholder="Input last name"
-                                />
-                            </div>
 
                             <div className="form-group">
                                 <label>Password</label>
@@ -147,8 +161,8 @@ const DocSignup = () => {
                                 <label>Office Address</label>
                                 <input
                                     type="text"
-                                    name="officeAddress"
-                                    value={formData.officeAddress}
+                                    name="address"
+                                    value={formData.address}
                                     onChange={handleChange}
                                     placeholder="Enter office address"
                                 />
