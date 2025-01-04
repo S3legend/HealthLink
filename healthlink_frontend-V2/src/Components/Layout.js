@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
     const excludePaths = ['/Login', '/DocSignup'];
 
     // Check if the current path is in the exclude list
-    const isExcluded = excludePaths.includes(location.pathname);
+    const isExcluded = excludePaths.includes(location.pathname) || location.pathname.startsWith('/dashboard/');
 
     return (
         <div>
